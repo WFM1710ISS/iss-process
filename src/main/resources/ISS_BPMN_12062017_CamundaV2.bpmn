@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:signavio="http://www.signavio.com" id="sid-20f92d1e-6e2c-4bce-8547-c663f2228563" targetNamespace="http://www.signavio.com" expressionLanguage="http://www.w3.org/TR/XPath" exporter="Camunda Modeler" exporterVersion="1.8.0" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL http://www.omg.org/spec/BPMN/2.0/20100501/BPMN20.xsd">
+  <message id="sid-8BAABD30-E768-44C0-9870-4F069F105F6B" name="Further&#10;specification" />
+  <message id="sid-56ACAAF0-9856-40A1-80EF-710B7A96C538" name="Current artwork" />
+  <message id="sid-F2CA6166-25AA-4EED-8DD6-BECAC7CB30BC" name="Payment" />
+  <message id="sid-D72258B5-EC3A-4B6F-B154-B9D5083B04D6" name="Suggested &#10;modification" />
+  <message id="sid-A09152B6-19F9-498E-8605-2A9161FAD93B" name="Modified &#10;artwork" />
+  <message id="sid-A73555A2-B0C1-42E1-A3E2-F191FC79B238" name="Final service" />
+  <message id="sid-B7DF4CBE-C6B7-43E6-AE60-F1098DFDC19F" name="Bill" />
+  <message id="sid-4F05BD87-3E7C-41F2-84C1-991B203503FA" name="request for &#10;additional information" />
+  <message id="sid-3FD9D6E9-F0CC-4921-8E58-26FE416DD80D" name="Current atwork" />
+  <message id="sid-944832D3-49F8-43C0-A53B-65C89A00497D" name="Feedback" />
+  <message id="sid-F26F6B2A-3A63-41E5-91B0-C61DEAFAB603" name="Information about &#10;order rejection" />
+  <message id="sid-0A2A5912-4CEE-4644-9956-7A14D02EE164" name="Request for &#10;bill modification" />
+  <message id="sid-5E55A6BD-C4A3-42EE-9391-EBE2D1995241" name="Request for &#10;additional information" />
+  <message id="sid-0FDA1C23-87EC-4463-89E3-721DF1101012" name="Design requirements" />
+  <message id="sid-095DE1CA-BD90-472C-BEFE-E880A98FA3D4" name="requirements and &#10;pre-agreement conditions" />
+  <message id="sid-F7439973-ED8F-49A5-8B1B-D2F10DAB7352" name="Contract &#10;conditions" />
+  <message id="sid-DDB810FF-7254-4D7A-9CA4-F299543DB68F" name="Answer" />
+  <message id="sid-069054EF-07AF-46DB-956C-44441C766B2E" name="Implementation &#10;acceptance/rejection" />
+  <message id="sid-B014CFC9-B9AF-44C7-A4D5-6ED231F51C3C" name="Contract approval" />
+  <message id="sid-9FCE478A-EE5A-4E70-8F7D-82CE28818A95" name="requirements" />
+  <message id="sid-ED88AD12-5AE9-40C1-9A1E-3C6DA6587894" name="Additional &#10;information" />
+  <message id="sid-c7ce1e7f-927f-4cf0-a11a-08c9ce0dccf1" name="Request about &#10;information necessity" />
+  <message id="sid-0430c02e-3a5c-41f3-a5ec-295237f6fdd0" name="requirements and &#10;pre-agreement &#10;conditions" />
+  <message id="sid-C3D3B84E-6F4E-4D0C-841F-4F0D5F425294" name="Pre-agreement &#10;conditions" />
+  <error id="sid-4ecfcb4c-d4e8-4587-bf13-74be46cb8a1c" />
+  <collaboration id="iss">
+    <extensionElements>
+      <signavio:signavioDiagramMetaData metaKey="revisionid" metaValue="1b6d66f6ffbc4bf890ac6732688dc654" />
+    </extensionElements>
+    <participant id="iss_service" name="ISS" processRef="iss_process">
+      <extensionElements>
+        <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff" />
+        <signavio:signavioMetaData metaKey="bordercolor" metaValue="#000000" />
+      </extensionElements>
+    </participant>
+  </collaboration>
+  <process id="iss_process" name="ISS" processType="None" isClosed="false" isExecutable="true">
+    <extensionElements />
+    <laneSet id="sid-f560ac21-af4b-4335-8f54-ed18e8800444">
+      <lane id="lane_operations" name="Operations">
+        <extensionElements>
+          <signavio:signavioMetaData metaKey="bgcolor" metaValue="" />
+          <signavio:signavioMetaData metaKey="bordercolor" metaValue="#C0C0C0" />
+        </extensionElements>
+      </lane>
+      <lane id="lane_finance" name="Finance">
+        <extensionElements>
+          <signavio:signavioMetaData metaKey="bgcolor" metaValue="" />
+          <signavio:signavioMetaData metaKey="bordercolor" metaValue="#C0C0C0" />
+        </extensionElements>
+      </lane>
+      <lane id="lane_key_account_manager" name="Key Account Manager">
+        <extensionElements>
+          <signavio:signavioMetaData metaKey="bgcolor" metaValue="" />
+          <signavio:signavioMetaData metaKey="bordercolor" metaValue="#C0C0C0" />
+        </extensionElements>
+        <flowNodeRef>message_start_1</flowNodeRef>
+        <flowNodeRef>EndEvent_12wymkm</flowNodeRef>
+        <flowNodeRef>Task_1j1rzf7</flowNodeRef>
+        <flowNodeRef>EndEvent_0hpu07s</flowNodeRef>
+        <flowNodeRef>Task_16poq59</flowNodeRef>
+        <flowNodeRef>SubProcess_1</flowNodeRef>
+        <flowNodeRef>BoundaryEvent_0lx3goz</flowNodeRef>
+      </lane>
+      <lane id="lane_contract_mgmt" name="Contract Management">
+        <extensionElements>
+          <signavio:signavioMetaData metaKey="bgcolor" metaValue="" />
+          <signavio:signavioMetaData metaKey="bordercolor" metaValue="#C0C0C0" />
+        </extensionElements>
+      </lane>
+    </laneSet>
+    <sequenceFlow id="SequenceFlow_1fofh1p" sourceRef="message_start_1" targetRef="SubProcess_1" />
+    <startEvent id="message_start_1" name="Start Message">
+      <outgoing>SequenceFlow_1fofh1p</outgoing>
+      <messageEventDefinition messageRef="Message_0ppc56b" />
+    </startEvent>
+    <sequenceFlow id="SequenceFlow_1ul8oya" sourceRef="SubProcess_1" targetRef="Task_1j1rzf7" />
+    <sequenceFlow id="SequenceFlow_1jyhn66" sourceRef="Task_1j1rzf7" targetRef="EndEvent_12wymkm" />
+    <subProcess id="SubProcess_1" name="Define Requirements">
+      <incoming>SequenceFlow_1fofh1p</incoming>
+      <outgoing>SequenceFlow_1ul8oya</outgoing>
+      <userTask id="UserTask_2" name="Analyse Requirements" camunda:formKey="embedded:app:forms/enter_requirements.html" camunda:assignee="mary">
+        <incoming>SequenceFlow_0my4goz</incoming>
+        <outgoing>SequenceFlow_0eih6qw</outgoing>
+      </userTask>
+      <startEvent id="StartEvent_1nttrgg">
+        <outgoing>SequenceFlow_0kvjtn0</outgoing>
+      </startEvent>
+      <sequenceFlow id="SequenceFlow_0kvjtn0" sourceRef="StartEvent_1nttrgg" targetRef="Task_064m5bo" />
+      <exclusiveGateway id="ExclusiveGateway_1movc9q" name="Order &#10;accepted?">
+        <incoming>SequenceFlow_0eih6qw</incoming>
+        <outgoing>SequenceFlow_02b86q5</outgoing>
+        <outgoing>SequenceFlow_0oe1q7f</outgoing>
+      </exclusiveGateway>
+      <sequenceFlow id="SequenceFlow_0eih6qw" sourceRef="UserTask_2" targetRef="ExclusiveGateway_1movc9q" />
+      <sequenceFlow id="SequenceFlow_02b86q5" name="No" sourceRef="ExclusiveGateway_1movc9q" targetRef="Task_1hdxkyy">
+        <conditionExpression xsi:type="tFormalExpression">${orderAccepted == false}</conditionExpression>
+      </sequenceFlow>
+      <sequenceFlow id="SequenceFlow_0oe1q7f" name="Yes" sourceRef="ExclusiveGateway_1movc9q" targetRef="Task_1bwys1g">
+        <conditionExpression xsi:type="tFormalExpression">${orderAccepted == true}</conditionExpression>
+      </sequenceFlow>
+      <endEvent id="EndEvent_14zpok7">
+        <incoming>SequenceFlow_0fpc6k9</incoming>
+      </endEvent>
+      <userTask id="Task_1bwys1g" name="Negotiate pre-agreement conditions">
+        <incoming>SequenceFlow_0oe1q7f</incoming>
+        <outgoing>SequenceFlow_1l7pynu</outgoing>
+      </userTask>
+      <userTask id="Task_1hdxkyy" name="Negotiate requirements and pre-agreement conditions" camunda:formKey="embedded:app:forms/enter_requirements.html">
+        <incoming>SequenceFlow_02b86q5</incoming>
+        <outgoing>SequenceFlow_11js7uu</outgoing>
+      </userTask>
+      <sequenceFlow id="SequenceFlow_11js7uu" sourceRef="Task_1hdxkyy" targetRef="ExclusiveGateway_18u94ua" />
+      <serviceTask id="ServiceTask_2" name="Send design requirements" camunda:delegateExpression="${checkAmountService}">
+        <incoming>SequenceFlow_0oa75ud</incoming>
+        <outgoing>SequenceFlow_0fpc6k9</outgoing>
+      </serviceTask>
+      <sequenceFlow id="SequenceFlow_1l7pynu" sourceRef="Task_1bwys1g" targetRef="ExclusiveGateway_0n6gn06" />
+      <exclusiveGateway id="ExclusiveGateway_18u94ua" name="Agreement reached?">
+        <incoming>SequenceFlow_11js7uu</incoming>
+        <outgoing>SequenceFlow_1f8p80t</outgoing>
+        <outgoing>SequenceFlow_09web0w</outgoing>
+      </exclusiveGateway>
+      <sequenceFlow id="SequenceFlow_1f8p80t" name="No" sourceRef="ExclusiveGateway_18u94ua" targetRef="EndEvent_1mrbj2w">
+        <conditionExpression xsi:type="tFormalExpression">${amountA == 10}</conditionExpression>
+      </sequenceFlow>
+      <exclusiveGateway id="ExclusiveGateway_0n6gn06">
+        <incoming>SequenceFlow_1l7pynu</incoming>
+        <incoming>SequenceFlow_09web0w</incoming>
+        <outgoing>SequenceFlow_0phve0l</outgoing>
+      </exclusiveGateway>
+      <sequenceFlow id="SequenceFlow_0phve0l" sourceRef="ExclusiveGateway_0n6gn06" targetRef="Task_10hs4to" />
+      <sequenceFlow id="SequenceFlow_09web0w" name="Yes" sourceRef="ExclusiveGateway_18u94ua" targetRef="ExclusiveGateway_0n6gn06">
+        <conditionExpression xsi:type="tFormalExpression">${amountA == 20}</conditionExpression>
+      </sequenceFlow>
+      <sequenceFlow id="SequenceFlow_0oa75ud" sourceRef="Task_10hs4to" targetRef="ServiceTask_2" />
+      <sequenceFlow id="SequenceFlow_0fpc6k9" sourceRef="ServiceTask_2" targetRef="EndEvent_14zpok7" />
+      <userTask id="Task_10hs4to" name="Classify requirements">
+        <incoming>SequenceFlow_0phve0l</incoming>
+        <outgoing>SequenceFlow_0oa75ud</outgoing>
+      </userTask>
+      <endEvent id="EndEvent_1mrbj2w">
+        <incoming>SequenceFlow_1f8p80t</incoming>
+        <errorEventDefinition errorRef="Error_1djd702" />
+      </endEvent>
+      <sequenceFlow id="SequenceFlow_0my4goz" sourceRef="Task_064m5bo" targetRef="UserTask_2" />
+      <serviceTask id="Task_064m5bo" name="Send Test Mail" camunda:asyncBefore="true">
+        <extensionElements>
+          <camunda:connector>
+            <camunda:inputOutput>
+              <camunda:inputParameter name="to">stephan.niewoehner@arcor.de</camunda:inputParameter>
+              <camunda:inputParameter name="subject">TEST</camunda:inputParameter>
+              <camunda:inputParameter name="text">This is a first test</camunda:inputParameter>
+            </camunda:inputOutput>
+            <camunda:connectorId>mail-send</camunda:connectorId>
+          </camunda:connector>
+        </extensionElements>
+        <incoming>SequenceFlow_0kvjtn0</incoming>
+        <outgoing>SequenceFlow_0my4goz</outgoing>
+      </serviceTask>
+    </subProcess>
+    <endEvent id="EndEvent_12wymkm">
+      <incoming>SequenceFlow_1jyhn66</incoming>
+    </endEvent>
+    <userTask id="Task_1j1rzf7" name="Test 3">
+      <incoming>SequenceFlow_1ul8oya</incoming>
+      <outgoing>SequenceFlow_1jyhn66</outgoing>
+    </userTask>
+    <endEvent id="EndEvent_0hpu07s">
+      <incoming>SequenceFlow_1fjz9rz</incoming>
+    </endEvent>
+    <sequenceFlow id="SequenceFlow_1yzaq3s" sourceRef="BoundaryEvent_0lx3goz" targetRef="Task_16poq59" />
+    <sequenceFlow id="SequenceFlow_1fjz9rz" sourceRef="Task_16poq59" targetRef="EndEvent_0hpu07s" />
+    <serviceTask id="Task_16poq59" name="Reject project" camunda:asyncBefore="true">
+      <extensionElements>
+        <camunda:connector>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="to">${mail.getFrom()}</camunda:inputParameter>
+            <camunda:inputParameter name="subject"><![CDATA[${'RE: '.concat(mail.getSubject())}]]></camunda:inputParameter>
+            <camunda:inputParameter name="text">You forgot to attach the file to print. Please send a new mail with attachment.</camunda:inputParameter>
+          </camunda:inputOutput>
+          <camunda:connectorId>reject_project</camunda:connectorId>
+        </camunda:connector>
+      </extensionElements>
+      <incoming>SequenceFlow_1yzaq3s</incoming>
+      <outgoing>SequenceFlow_1fjz9rz</outgoing>
+    </serviceTask>
+    <boundaryEvent id="BoundaryEvent_0lx3goz" attachedToRef="SubProcess_1">
+      <outgoing>SequenceFlow_1yzaq3s</outgoing>
+      <errorEventDefinition errorRef="Error_1djd702" />
+    </boundaryEvent>
+  </process>
+  <message id="Message_0xus74o" />
+  <message id="Message_0ppc56b" name="instantiationMessage" />
+  <message id="Message_02hnw0y" />
+  <error id="Error_1djd702" name="error_end_process" errorCode="close" />
+  <bpmndi:BPMNDiagram id="sid-174f7cea-1cfc-434b-95c4-0ae0277a0827">
+    <bpmndi:BPMNPlane id="sid-896aad4e-330e-4d18-b9df-57d494edb1da" bpmnElement="iss">
+      <bpmndi:BPMNShape id="sid-EF8EE5FC-7EBA-4948-A1B6-2881A0111141_gui" bpmnElement="iss_service" isHorizontal="true">
+        <omgdc:Bounds x="202" y="812" width="6882" height="1399" />
+        <bpmndi:BPMNLabel labelStyle="sid-23a245aa-b137-42c9-abeb-9cf567fc5026">
+          <omgdc:Bounds x="207" y="1501.8571434020996" width="12" height="19.28571319580078" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="sid-4BC89D45-4D19-4341-B93B-9500D8A0E61D_gui" bpmnElement="lane_operations" isHorizontal="true">
+        <omgdc:Bounds x="232" y="812" width="6852" height="189" />
+        <bpmndi:BPMNLabel labelStyle="sid-23a245aa-b137-42c9-abeb-9cf567fc5026">
+          <omgdc:Bounds x="237" y="876.7999992370605" width="12" height="59.400001525878906" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="sid-6D442427-0662-4D36-B2BA-7157ECA365E2_gui" bpmnElement="lane_finance" isHorizontal="true">
+        <omgdc:Bounds x="232" y="1808" width="6852" height="403" />
+        <bpmndi:BPMNLabel labelStyle="sid-23a245aa-b137-42c9-abeb-9cf567fc5026">
+          <omgdc:Bounds x="237" y="1989.4428577423096" width="12" height="40.11428451538086" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="sid-14E5C7DC-096E-4879-8F64-6B526FA1A08D_gui" bpmnElement="lane_key_account_manager" isHorizontal="true">
+        <omgdc:Bounds x="232" y="1001" width="6852" height="590" />
+        <bpmndi:BPMNLabel labelStyle="sid-23a245aa-b137-42c9-abeb-9cf567fc5026">
+          <omgdc:Bounds x="237" y="1237.3714294433594" width="12.000000000000028" height="117.25714111328125" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="sid-D37338E6-7B7C-45D5-AB7B-3DD5008AB682_gui" bpmnElement="lane_contract_mgmt" isHorizontal="true">
+        <omgdc:Bounds x="232" y="1591" width="6852" height="217" />
+        <bpmndi:BPMNLabel labelStyle="sid-23a245aa-b137-42c9-abeb-9cf567fc5026">
+          <omgdc:Bounds x="237" y="1639.7142868041992" width="12.000000000000028" height="119.57142639160156" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ServiceTask_0mh7um1_di" bpmnElement="ServiceTask_2">
+        <omgdc:Bounds x="1221" y="1406" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_15wxfl3_di" bpmnElement="message_start_1">
+        <omgdc:Bounds x="300" y="1324" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="283" y="1363" width="71" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_0drhhmn_di" bpmnElement="UserTask_2">
+        <omgdc:Bounds x="583" y="1406" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="SubProcess_1be3p2v_di" bpmnElement="SubProcess_1" isExpanded="true">
+        <omgdc:Bounds x="361" y="1153" width="1091" height="380" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_1nttrgg_di" bpmnElement="StartEvent_1nttrgg">
+        <omgdc:Bounds x="380" y="1428" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="353" y="1467" width="90" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0kvjtn0_di" bpmnElement="SequenceFlow_0kvjtn0">
+        <omgdi:waypoint xsi:type="omgdc:Point" x="416" y="1446" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="448" y="1446" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="387" y="1424.5" width="90" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1fofh1p_di" bpmnElement="SequenceFlow_1fofh1p">
+        <omgdi:waypoint xsi:type="omgdc:Point" x="336" y="1342" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="361" y="1343" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="303.5" y="1321" width="90" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ExclusiveGateway_1movc9q_di" bpmnElement="ExclusiveGateway_1movc9q" isMarkerVisible="true">
+        <omgdc:Bounds x="717.6385681293302" y="1421" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="717" y="1474" width="51" height="25" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0eih6qw_di" bpmnElement="SequenceFlow_0eih6qw">
+        <omgdi:waypoint xsi:type="omgdc:Point" x="683" y="1446" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="718" y="1446" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="700.5" y="1424" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_02b86q5_di" bpmnElement="SequenceFlow_02b86q5">
+        <omgdi:waypoint xsi:type="omgdc:Point" x="743" y="1421" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="743" y="1243" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="834" y="1243" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="753.3297101449275" y="1355" width="15" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0oe1q7f_di" bpmnElement="SequenceFlow_0oe1q7f">
+        <omgdi:waypoint xsi:type="omgdc:Point" x="767.6385681293302" y="1446" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="834" y="1446" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="777" y="1424" width="18" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_14zpok7_di" bpmnElement="EndEvent_14zpok7">
+        <omgdc:Bounds x="1377.6385681293302" y="1428" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="1395.6385681293302" y="1467" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_1y5m8wj_di" bpmnElement="Task_1bwys1g">
+        <omgdc:Bounds x="834" y="1406" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_1qr2mgh_di" bpmnElement="Task_1hdxkyy">
+        <omgdc:Bounds x="834" y="1203" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_12wymkm_di" bpmnElement="EndEvent_12wymkm">
+        <omgdc:Bounds x="1674.6385681293302" y="1324" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="1692.6385681293302" y="1363" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1ul8oya_di" bpmnElement="SequenceFlow_1ul8oya">
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1452" y="1342" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1533" y="1342" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="1447.5" y="1320.5" width="90" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_11js7uu_di" bpmnElement="SequenceFlow_11js7uu">
+        <omgdi:waypoint xsi:type="omgdc:Point" x="934" y="1243" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="993" y="1243" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="963.5" y="1221.5" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1l7pynu_di" bpmnElement="SequenceFlow_1l7pynu">
+        <omgdi:waypoint xsi:type="omgdc:Point" x="934" y="1446" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="993" y="1446" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="963.5" y="1424.5" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1jyhn66_di" bpmnElement="SequenceFlow_1jyhn66">
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1633" y="1342" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1675" y="1342" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="1654" y="1320.5" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_1jpvdgo_di" bpmnElement="Task_1j1rzf7">
+        <omgdc:Bounds x="1533" y="1302" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ExclusiveGateway_18u94ua_di" bpmnElement="ExclusiveGateway_18u94ua" isMarkerVisible="true">
+        <omgdc:Bounds x="993.3861490031479" y="1218" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="991" y="1188" width="54" height="25" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1f8p80t_di" bpmnElement="SequenceFlow_1f8p80t">
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1043" y="1243" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1378" y="1243" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="1203" y="1222" width="15" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ExclusiveGateway_0n6gn06_di" bpmnElement="ExclusiveGateway_0n6gn06" isMarkerVisible="true">
+        <omgdc:Bounds x="993" y="1421" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="1018" y="1474" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0phve0l_di" bpmnElement="SequenceFlow_0phve0l">
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1043" y="1446" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1081" y="1446" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="1062" y="1424.5" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_09web0w_di" bpmnElement="SequenceFlow_09web0w">
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1018" y="1268" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1018" y="1421" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="1024" y="1338" width="18" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0oa75ud_di" bpmnElement="SequenceFlow_0oa75ud">
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1181" y="1446" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1221" y="1446" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="1201" y="1424.5" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0fpc6k9_di" bpmnElement="SequenceFlow_0fpc6k9">
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1321" y="1446" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1378" y="1446" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="1349.5" y="1424.5" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_00of0ck_di" bpmnElement="Task_10hs4to">
+        <omgdc:Bounds x="1081" y="1406" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_13vretf_di" bpmnElement="EndEvent_1mrbj2w">
+        <omgdc:Bounds x="1378" y="1225" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="1396" y="1264" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_0hpu07s_di" bpmnElement="EndEvent_0hpu07s">
+        <omgdc:Bounds x="1675" y="1077" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="1693" y="1116" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1yzaq3s_di" bpmnElement="SequenceFlow_1yzaq3s">
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1252" y="1135" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1252" y="1095" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1533" y="1095" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="1222" y="1108.5" width="90" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="BoundaryEvent_0jvzm9t_di" bpmnElement="BoundaryEvent_0lx3goz">
+        <omgdc:Bounds x="1234" y="1135" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="1207" y="1174" width="90" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1fjz9rz_di" bpmnElement="SequenceFlow_1fjz9rz">
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1633" y="1095" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1675" y="1095" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="1609" y="1073.5" width="90" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_0hbe5aj_di" bpmnElement="Task_16poq59">
+        <omgdc:Bounds x="1533" y="1056" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0my4goz_di" bpmnElement="SequenceFlow_0my4goz">
+        <omgdi:waypoint xsi:type="omgdc:Point" x="548" y="1446" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="583" y="1446" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="565.5" y="1424.5" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_1oi39ym_di" bpmnElement="Task_064m5bo">
+        <omgdc:Bounds x="448" y="1406" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+    <bpmndi:BPMNLabelStyle id="sid-5c41a4a2-058d-4501-9db2-63d8c4cd959f">
+      <omgdc:Font name="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" />
+    </bpmndi:BPMNLabelStyle>
+    <bpmndi:BPMNLabelStyle id="sid-23a245aa-b137-42c9-abeb-9cf567fc5026">
+      <omgdc:Font name="Arial" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" />
+    </bpmndi:BPMNLabelStyle>
+  </bpmndi:BPMNDiagram>
+</definitions>
