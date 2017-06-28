@@ -56,13 +56,13 @@
           <signavio:signavioMetaData metaKey="bgcolor" metaValue="" />
           <signavio:signavioMetaData metaKey="bordercolor" metaValue="#C0C0C0" />
         </extensionElements>
-        <flowNodeRef>EndEvent_12wymkm</flowNodeRef>
         <flowNodeRef>Task_1j1rzf7</flowNodeRef>
         <flowNodeRef>EndEvent_0hpu07s</flowNodeRef>
         <flowNodeRef>Task_16poq59</flowNodeRef>
         <flowNodeRef>SubProcess_1</flowNodeRef>
         <flowNodeRef>BoundaryEvent_0lx3goz</flowNodeRef>
         <flowNodeRef>message_start_1</flowNodeRef>
+        <flowNodeRef>EndEvent_12wymkm</flowNodeRef>
       </lane>
       <lane id="lane_contract_mgmt" name="Contract Management">
         <extensionElements>
@@ -142,10 +142,7 @@
         <errorEventDefinition errorRef="Error_1djd702" />
       </endEvent>
     </subProcess>
-    <endEvent id="EndEvent_12wymkm">
-      <incoming>SequenceFlow_1jyhn66</incoming>
-    </endEvent>
-    <userTask id="Task_1j1rzf7" name="Test 3">
+    <userTask id="Task_1j1rzf7" name="TEST 10">
       <incoming>SequenceFlow_1ul8oya</incoming>
       <outgoing>SequenceFlow_1jyhn66</outgoing>
     </userTask>
@@ -176,6 +173,9 @@
       <outgoing>SequenceFlow_1fofh1p</outgoing>
       <messageEventDefinition messageRef="Message_0ppc56b" />
     </startEvent>
+    <endEvent id="EndEvent_12wymkm">
+      <incoming>SequenceFlow_1jyhn66</incoming>
+    </endEvent>
   </process>
   <message id="Message_0xus74o" />
   <message id="Message_0ppc56b" name="instantiationMessage" />
@@ -291,9 +291,9 @@
         <omgdc:Bounds x="834" y="1203" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="EndEvent_12wymkm_di" bpmnElement="EndEvent_12wymkm">
-        <omgdc:Bounds x="1674.6385681293302" y="1324" width="36" height="36" />
+        <omgdc:Bounds x="1675" y="1324" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="1692.6385681293302" y="1363" width="0" height="13" />
+          <omgdc:Bounds x="1648" y="1363" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_1ul8oya_di" bpmnElement="SequenceFlow_1ul8oya">
@@ -319,9 +319,11 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_1jyhn66_di" bpmnElement="SequenceFlow_1jyhn66">
         <omgdi:waypoint xsi:type="omgdc:Point" x="1633" y="1342" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1654" y="1342" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1654" y="1342" />
         <omgdi:waypoint xsi:type="omgdc:Point" x="1675" y="1342" />
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="1654" y="1320.5" width="0" height="13" />
+          <omgdc:Bounds x="1624" y="1335.5" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="UserTask_1jpvdgo_di" bpmnElement="Task_1j1rzf7">
