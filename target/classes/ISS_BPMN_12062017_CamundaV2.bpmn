@@ -56,13 +56,14 @@
           <signavio:signavioMetaData metaKey="bgcolor" metaValue="" />
           <signavio:signavioMetaData metaKey="bordercolor" metaValue="#C0C0C0" />
         </extensionElements>
-        <flowNodeRef>Task_1j1rzf7</flowNodeRef>
-        <flowNodeRef>EndEvent_0hpu07s</flowNodeRef>
-        <flowNodeRef>Task_16poq59</flowNodeRef>
+        <flowNodeRef>message_start_1</flowNodeRef>
         <flowNodeRef>SubProcess_1</flowNodeRef>
         <flowNodeRef>BoundaryEvent_0lx3goz</flowNodeRef>
-        <flowNodeRef>message_start_1</flowNodeRef>
+        <flowNodeRef>Task_1ctl0tk</flowNodeRef>
+        <flowNodeRef>Task_1j1rzf7</flowNodeRef>
         <flowNodeRef>EndEvent_12wymkm</flowNodeRef>
+        <flowNodeRef>Task_16poq59</flowNodeRef>
+        <flowNodeRef>EndEvent_0hpu07s</flowNodeRef>
       </lane>
       <lane id="lane_contract_mgmt" name="Contract Management">
         <extensionElements>
@@ -72,19 +73,23 @@
       </lane>
     </laneSet>
     <sequenceFlow id="SequenceFlow_1fofh1p" sourceRef="message_start_1" targetRef="SubProcess_1" />
-    <sequenceFlow id="SequenceFlow_1ul8oya" sourceRef="SubProcess_1" targetRef="Task_1j1rzf7" />
     <sequenceFlow id="SequenceFlow_1jyhn66" sourceRef="Task_1j1rzf7" targetRef="EndEvent_12wymkm" />
+    <sequenceFlow id="SequenceFlow_1yzaq3s" sourceRef="BoundaryEvent_0lx3goz" targetRef="Task_16poq59" />
+    <sequenceFlow id="SequenceFlow_1fjz9rz" sourceRef="Task_16poq59" targetRef="EndEvent_0hpu07s" />
+    <startEvent id="message_start_1" name="Start Message">
+      <outgoing>SequenceFlow_1fofh1p</outgoing>
+      <messageEventDefinition messageRef="Message_0ppc56b" />
+    </startEvent>
     <subProcess id="SubProcess_1" name="Define Requirements">
       <incoming>SequenceFlow_1fofh1p</incoming>
-      <outgoing>SequenceFlow_1ul8oya</outgoing>
+      <outgoing>SequenceFlow_1wrdcll</outgoing>
       <userTask id="UserTask_2" name="Analyse Requirements" camunda:formKey="embedded:app:forms/enter_requirements.html" camunda:assignee="mary">
-        <incoming>SequenceFlow_0kvjtn0</incoming>
+        <incoming>SequenceFlow_0gxmzo1</incoming>
         <outgoing>SequenceFlow_0eih6qw</outgoing>
       </userTask>
       <startEvent id="StartEvent_1nttrgg">
-        <outgoing>SequenceFlow_0kvjtn0</outgoing>
+        <outgoing>SequenceFlow_0gxmzo1</outgoing>
       </startEvent>
-      <sequenceFlow id="SequenceFlow_0kvjtn0" sourceRef="StartEvent_1nttrgg" targetRef="UserTask_2" />
       <exclusiveGateway id="ExclusiveGateway_1movc9q" name="Order &#10;accepted?">
         <incoming>SequenceFlow_0eih6qw</incoming>
         <outgoing>SequenceFlow_02b86q5</outgoing>
@@ -98,7 +103,7 @@
         <conditionExpression xsi:type="tFormalExpression">${orderAccepted == true}</conditionExpression>
       </sequenceFlow>
       <endEvent id="EndEvent_14zpok7">
-        <incoming>SequenceFlow_0fpc6k9</incoming>
+        <incoming>SequenceFlow_067qykz</incoming>
       </endEvent>
       <userTask id="Task_1bwys1g" name="Negotiate pre-agreement conditions">
         <incoming>SequenceFlow_0oe1q7f</incoming>
@@ -111,7 +116,7 @@
       <sequenceFlow id="SequenceFlow_11js7uu" sourceRef="Task_1hdxkyy" targetRef="ExclusiveGateway_18u94ua" />
       <serviceTask id="ServiceTask_2" name="Send design requirements" camunda:delegateExpression="${checkAmountService}">
         <incoming>SequenceFlow_0oa75ud</incoming>
-        <outgoing>SequenceFlow_0fpc6k9</outgoing>
+        <outgoing>SequenceFlow_1m57rq5</outgoing>
       </serviceTask>
       <sequenceFlow id="SequenceFlow_1l7pynu" sourceRef="Task_1bwys1g" targetRef="ExclusiveGateway_0n6gn06" />
       <exclusiveGateway id="ExclusiveGateway_18u94ua" name="Agreement reached?">
@@ -132,7 +137,6 @@
         <conditionExpression xsi:type="tFormalExpression">${amount == 20}</conditionExpression>
       </sequenceFlow>
       <sequenceFlow id="SequenceFlow_0oa75ud" sourceRef="Task_10hs4to" targetRef="ServiceTask_2" />
-      <sequenceFlow id="SequenceFlow_0fpc6k9" sourceRef="ServiceTask_2" targetRef="EndEvent_14zpok7" />
       <userTask id="Task_10hs4to" name="Classify requirements">
         <incoming>SequenceFlow_0phve0l</incoming>
         <outgoing>SequenceFlow_0oa75ud</outgoing>
@@ -141,16 +145,31 @@
         <incoming>SequenceFlow_1f8p80t</incoming>
         <errorEventDefinition errorRef="Error_1djd702" />
       </endEvent>
+      <sendTask id="Task_0m4aufc" name="Send Testmessage" camunda:class="org.wwu.wfm.group10.iss.event.message.ProcessSendingMessageDelegate">
+        <incoming>SequenceFlow_1m57rq5</incoming>
+        <outgoing>SequenceFlow_067qykz</outgoing>
+      </sendTask>
+      <sequenceFlow id="SequenceFlow_0gxmzo1" sourceRef="StartEvent_1nttrgg" targetRef="UserTask_2" />
+      <sequenceFlow id="SequenceFlow_1m57rq5" sourceRef="ServiceTask_2" targetRef="Task_0m4aufc" />
+      <sequenceFlow id="SequenceFlow_067qykz" sourceRef="Task_0m4aufc" targetRef="EndEvent_14zpok7" />
     </subProcess>
+    <boundaryEvent id="BoundaryEvent_0lx3goz" attachedToRef="SubProcess_1">
+      <outgoing>SequenceFlow_1yzaq3s</outgoing>
+      <errorEventDefinition errorRef="Error_1djd702" />
+    </boundaryEvent>
+    <sequenceFlow id="SequenceFlow_1wrdcll" sourceRef="SubProcess_1" targetRef="Task_1ctl0tk" />
+    <receiveTask id="Task_1ctl0tk" name="Receive Testmessage" messageRef="Message_04ua5r8">
+      <incoming>SequenceFlow_1wrdcll</incoming>
+      <outgoing>SequenceFlow_0c2c798</outgoing>
+    </receiveTask>
+    <sequenceFlow id="SequenceFlow_0c2c798" sourceRef="Task_1ctl0tk" targetRef="Task_1j1rzf7" />
     <userTask id="Task_1j1rzf7" name="TEST 10">
-      <incoming>SequenceFlow_1ul8oya</incoming>
+      <incoming>SequenceFlow_0c2c798</incoming>
       <outgoing>SequenceFlow_1jyhn66</outgoing>
     </userTask>
-    <endEvent id="EndEvent_0hpu07s">
-      <incoming>SequenceFlow_1fjz9rz</incoming>
+    <endEvent id="EndEvent_12wymkm">
+      <incoming>SequenceFlow_1jyhn66</incoming>
     </endEvent>
-    <sequenceFlow id="SequenceFlow_1yzaq3s" sourceRef="BoundaryEvent_0lx3goz" targetRef="Task_16poq59" />
-    <sequenceFlow id="SequenceFlow_1fjz9rz" sourceRef="Task_16poq59" targetRef="EndEvent_0hpu07s" />
     <serviceTask id="Task_16poq59" name="Reject project" camunda:asyncBefore="true">
       <extensionElements>
         <camunda:connector>
@@ -165,22 +184,15 @@
       <incoming>SequenceFlow_1yzaq3s</incoming>
       <outgoing>SequenceFlow_1fjz9rz</outgoing>
     </serviceTask>
-    <boundaryEvent id="BoundaryEvent_0lx3goz" attachedToRef="SubProcess_1">
-      <outgoing>SequenceFlow_1yzaq3s</outgoing>
-      <errorEventDefinition errorRef="Error_1djd702" />
-    </boundaryEvent>
-    <startEvent id="message_start_1" name="Start Message">
-      <outgoing>SequenceFlow_1fofh1p</outgoing>
-      <messageEventDefinition messageRef="Message_0ppc56b" />
-    </startEvent>
-    <endEvent id="EndEvent_12wymkm">
-      <incoming>SequenceFlow_1jyhn66</incoming>
+    <endEvent id="EndEvent_0hpu07s">
+      <incoming>SequenceFlow_1fjz9rz</incoming>
     </endEvent>
   </process>
   <message id="Message_0xus74o" />
   <message id="Message_0ppc56b" name="instantiationMessage" />
   <message id="Message_02hnw0y" />
   <error id="Error_1djd702" name="error_end_process" errorCode="close" />
+  <message id="Message_04ua5r8" name="continueMessage" />
   <bpmndi:BPMNDiagram id="sid-174f7cea-1cfc-434b-95c4-0ae0277a0827">
     <bpmndi:BPMNPlane id="sid-896aad4e-330e-4d18-b9df-57d494edb1da" bpmnElement="iss">
       <bpmndi:BPMNShape id="sid-EF8EE5FC-7EBA-4948-A1B6-2881A0111141_gui" bpmnElement="iss_service" isHorizontal="true">
@@ -214,207 +226,223 @@
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="ServiceTask_0mh7um1_di" bpmnElement="ServiceTask_2">
-        <omgdc:Bounds x="1221" y="1406" width="100" height="80" />
+        <omgdc:Bounds x="1229" y="1395" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="StartEvent_15wxfl3_di" bpmnElement="message_start_1">
-        <omgdc:Bounds x="300" y="1350" width="36" height="36" />
+        <omgdc:Bounds x="347" y="1345" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="283" y="1389" width="71" height="13" />
+          <omgdc:Bounds x="330" y="1384" width="71" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="UserTask_0drhhmn_di" bpmnElement="UserTask_2">
-        <omgdc:Bounds x="561" y="1406" width="100" height="80" />
+        <omgdc:Bounds x="567" y="1395" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="SubProcess_1be3p2v_di" bpmnElement="SubProcess_1" isExpanded="true">
-        <omgdc:Bounds x="424" y="1153" width="1028" height="383" />
+        <omgdc:Bounds x="456" y="1142" width="1117" height="395" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="StartEvent_1nttrgg_di" bpmnElement="StartEvent_1nttrgg">
-        <omgdc:Bounds x="464" y="1428" width="36" height="36" />
+        <omgdc:Bounds x="476" y="1417" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="437" y="1467" width="90" height="13" />
+          <omgdc:Bounds x="449" y="1456" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="SequenceFlow_0kvjtn0_di" bpmnElement="SequenceFlow_0kvjtn0">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="500" y="1446" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="561" y="1446" />
-        <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="485.5" y="1424.5" width="90" height="13" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_1fofh1p_di" bpmnElement="SequenceFlow_1fofh1p">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="336" y="1367" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="380" y="1367" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="380" y="1367" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="424" y="1367" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="383" y="1362" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="456" y="1362" />
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="350" y="1360.5" width="90" height="13" />
+          <omgdc:Bounds x="374.5" y="1340.5" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="ExclusiveGateway_1movc9q_di" bpmnElement="ExclusiveGateway_1movc9q" isMarkerVisible="true">
-        <omgdc:Bounds x="717.6385681293302" y="1421" width="50" height="50" />
+        <omgdc:Bounds x="726" y="1410" width="50" height="50" />
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="717" y="1474" width="51" height="25" />
+          <omgdc:Bounds x="725" y="1463" width="51" height="25" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_0eih6qw_di" bpmnElement="SequenceFlow_0eih6qw">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="661" y="1446" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="718" y="1446" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="667" y="1435" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="726" y="1435" />
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="644.5" y="1424.5" width="90" height="13" />
+          <omgdc:Bounds x="651.5" y="1413.5" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_02b86q5_di" bpmnElement="SequenceFlow_02b86q5">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="743" y="1421" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="743" y="1243" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="834" y="1243" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="751" y="1410" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="751" y="1232" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="842" y="1232" />
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="753.3297101449275" y="1355" width="15" height="13" />
+          <omgdc:Bounds x="762" y="1344" width="15" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_0oe1q7f_di" bpmnElement="SequenceFlow_0oe1q7f">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="767.6385681293302" y="1446" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="834" y="1446" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="775.6385681293302" y="1435" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="842" y="1435" />
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="777" y="1424" width="18" height="13" />
+          <omgdc:Bounds x="785" y="1413" width="18" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="EndEvent_14zpok7_di" bpmnElement="EndEvent_14zpok7">
-        <omgdc:Bounds x="1377.6385681293302" y="1428" width="36" height="36" />
+        <omgdc:Bounds x="1507" y="1417" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="1395.6385681293302" y="1467" width="0" height="13" />
+          <omgdc:Bounds x="1480" y="1456" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="UserTask_1y5m8wj_di" bpmnElement="Task_1bwys1g">
-        <omgdc:Bounds x="834" y="1406" width="100" height="80" />
+        <omgdc:Bounds x="842" y="1395" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="UserTask_1qr2mgh_di" bpmnElement="Task_1hdxkyy">
-        <omgdc:Bounds x="834" y="1203" width="100" height="80" />
+        <omgdc:Bounds x="842" y="1192" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="EndEvent_12wymkm_di" bpmnElement="EndEvent_12wymkm">
-        <omgdc:Bounds x="1675" y="1324" width="36" height="36" />
+        <omgdc:Bounds x="2030" y="1322" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="1648" y="1363" width="90" height="13" />
+          <omgdc:Bounds x="2003" y="1361" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="SequenceFlow_1ul8oya_di" bpmnElement="SequenceFlow_1ul8oya">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1452" y="1342" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1533" y="1342" />
-        <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="1447.5" y="1320.5" width="90" height="13" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_11js7uu_di" bpmnElement="SequenceFlow_11js7uu">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="934" y="1243" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="993" y="1243" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="942" y="1232" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1001" y="1232" />
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="963.5" y="1221.5" width="0" height="13" />
+          <omgdc:Bounds x="927" y="1211" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_1l7pynu_di" bpmnElement="SequenceFlow_1l7pynu">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="934" y="1446" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="993" y="1446" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="942" y="1435" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1001" y="1435" />
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="963.5" y="1424.5" width="0" height="13" />
+          <omgdc:Bounds x="927" y="1414" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_1jyhn66_di" bpmnElement="SequenceFlow_1jyhn66">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1633" y="1342" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1654" y="1342" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1654" y="1342" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1675" y="1342" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1964" y="1340" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="2030" y="1340" />
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="1624" y="1335.5" width="90" height="13" />
+          <omgdc:Bounds x="1952" y="1318.5" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="UserTask_1jpvdgo_di" bpmnElement="Task_1j1rzf7">
-        <omgdc:Bounds x="1533" y="1302" width="100" height="80" />
+        <omgdc:Bounds x="1864" y="1300" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="ExclusiveGateway_18u94ua_di" bpmnElement="ExclusiveGateway_18u94ua" isMarkerVisible="true">
-        <omgdc:Bounds x="993.3861490031479" y="1218" width="50" height="50" />
+        <omgdc:Bounds x="1001" y="1207" width="50" height="50" />
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="991" y="1188" width="54" height="25" />
+          <omgdc:Bounds x="999" y="1177" width="54" height="25" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_1f8p80t_di" bpmnElement="SequenceFlow_1f8p80t">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1043" y="1243" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1378" y="1243" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1051" y="1232" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1386" y="1232" />
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="1203" y="1222" width="15" height="13" />
+          <omgdc:Bounds x="1211" y="1211" width="15" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="ExclusiveGateway_0n6gn06_di" bpmnElement="ExclusiveGateway_0n6gn06" isMarkerVisible="true">
-        <omgdc:Bounds x="993" y="1421" width="50" height="50" />
+        <omgdc:Bounds x="1001" y="1410" width="50" height="50" />
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="1018" y="1474" width="0" height="13" />
+          <omgdc:Bounds x="981" y="1463" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_0phve0l_di" bpmnElement="SequenceFlow_0phve0l">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1043" y="1446" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1081" y="1446" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1051" y="1435" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1089" y="1435" />
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="1062" y="1424.5" width="0" height="13" />
+          <omgdc:Bounds x="1025" y="1414" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_09web0w_di" bpmnElement="SequenceFlow_09web0w">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1018" y="1268" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1018" y="1421" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1026" y="1257" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1026" y="1410" />
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="1024" y="1338" width="18" height="13" />
+          <omgdc:Bounds x="1032" y="1327" width="18" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_0oa75ud_di" bpmnElement="SequenceFlow_0oa75ud">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1181" y="1446" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1221" y="1446" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1189" y="1435" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1229" y="1435" />
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="1201" y="1424.5" width="0" height="13" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="SequenceFlow_0fpc6k9_di" bpmnElement="SequenceFlow_0fpc6k9">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1321" y="1446" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1378" y="1446" />
-        <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="1349.5" y="1424.5" width="0" height="13" />
+          <omgdc:Bounds x="1164" y="1413.5" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="UserTask_00of0ck_di" bpmnElement="Task_10hs4to">
-        <omgdc:Bounds x="1081" y="1406" width="100" height="80" />
+        <omgdc:Bounds x="1089" y="1395" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="EndEvent_13vretf_di" bpmnElement="EndEvent_1mrbj2w">
-        <omgdc:Bounds x="1378" y="1225" width="36" height="36" />
+        <omgdc:Bounds x="1386" y="1214" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="1396" y="1264" width="0" height="13" />
+          <omgdc:Bounds x="1359" y="1253" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="EndEvent_0hpu07s_di" bpmnElement="EndEvent_0hpu07s">
-        <omgdc:Bounds x="1675" y="1077" width="36" height="36" />
+        <omgdc:Bounds x="1963" y="1078" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="1693" y="1116" width="0" height="13" />
+          <omgdc:Bounds x="1936" y="1117" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_1yzaq3s_di" bpmnElement="SequenceFlow_1yzaq3s">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1264" y="1135" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1264" y="1095" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1533" y="1095" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1368" y="1124" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1368" y="1095" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1668" y="1095" />
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="1234" y="1108.5" width="90" height="13" />
+          <omgdc:Bounds x="1338" y="1103" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="BoundaryEvent_0jvzm9t_di" bpmnElement="BoundaryEvent_0lx3goz">
-        <omgdc:Bounds x="1246" y="1135" width="36" height="36" />
+        <omgdc:Bounds x="1350" y="1124" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="1219" y="1174" width="90" height="13" />
+          <omgdc:Bounds x="1323" y="1163" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_1fjz9rz_di" bpmnElement="SequenceFlow_1fjz9rz">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1633" y="1095" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1675" y="1095" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1768" y="1095" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1963" y="1096" />
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="1609" y="1073.5" width="90" height="13" />
+          <omgdc:Bounds x="1820.5" y="1074" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="ServiceTask_0hbe5aj_di" bpmnElement="Task_16poq59">
-        <omgdc:Bounds x="1533" y="1056" width="100" height="80" />
+        <omgdc:Bounds x="1668" y="1056" width="100" height="80" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="SendTask_171dl7p_di" bpmnElement="Task_0m4aufc">
+        <omgdc:Bounds x="1375" y="1395" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ReceiveTask_1f97dgc_di" bpmnElement="Task_1ctl0tk">
+        <omgdc:Bounds x="1668" y="1300" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0gxmzo1_di" bpmnElement="SequenceFlow_0gxmzo1">
+        <omgdi:waypoint xsi:type="omgdc:Point" x="512" y="1435" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="567" y="1435" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="539.5" y="1413.5" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1m57rq5_di" bpmnElement="SequenceFlow_1m57rq5">
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1329" y="1435" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1375" y="1435" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="1352" y="1413.5" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_067qykz_di" bpmnElement="SequenceFlow_067qykz">
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1475" y="1435" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1507" y="1435" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="1491" y="1413" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1wrdcll_di" bpmnElement="SequenceFlow_1wrdcll">
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1573" y="1340" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1668" y="1340" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="1620.5" y="1318.5" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0c2c798_di" bpmnElement="SequenceFlow_0c2c798">
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1768" y="1340" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1864" y="1340" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="1816" y="1318.5" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
     <bpmndi:BPMNLabelStyle id="sid-5c41a4a2-058d-4501-9db2-63d8c4cd959f">
       <omgdc:Font name="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" />

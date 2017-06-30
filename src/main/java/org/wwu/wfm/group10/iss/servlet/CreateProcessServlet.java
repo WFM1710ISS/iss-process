@@ -3,7 +3,6 @@ package org.wwu.wfm.group10.iss.servlet;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,10 +34,8 @@ public class CreateProcessServlet extends HttpServlet {
 		String amount = request.getParameter("amount");
 		String comment = request.getParameter("comment");
 		
-		
 		ClassLoader classLoader = getClass().getClassLoader();
 		File file = new File(classLoader.getResource("file/test.pdf").getFile());
-				
 	    
 		FileValue typedFileValue = Variables
 				  .fileValue("/test.pdf")
@@ -60,10 +57,9 @@ public class CreateProcessServlet extends HttpServlet {
 
 			processInstance = runtimeService.startProcessInstanceByMessage("instantiationMessage", map);
 		}
-		out.println("<html><body>");
-		out.println("<h1>Process Instance Started</h1>");
-		out.println("<p>ID: " + processInstance.getId() + "</p>");
-		out.println("<p>Username: " + username + "</p>");
-		out.println("</body></html>");
+
+		out.println("<Request was submitted successfully. Your process-ID:");
+		out.println(processInstance.getId());
+
 	}
 }
