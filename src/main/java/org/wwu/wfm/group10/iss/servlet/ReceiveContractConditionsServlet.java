@@ -30,7 +30,7 @@ public class ReceiveContractConditionsServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		out.println("<html><body>");
 		
-		String id = request.getParameter("id");
+		String id = request.getParameter("corrID");
 		String contractNegotiated = request.getParameter("contractNegotiated");
 		
 		if (null == id && null == contractNegotiated) {
@@ -43,7 +43,7 @@ public class ReceiveContractConditionsServlet extends HttpServlet {
 				out.println("<h1>Message delivered to process</h1><p>ID: " + id + contractNegotiated + "</p>");
 				
 			} catch (MismatchingMessageCorrelationException e) {
-				out.println("<h2>Error TEST TEST</h2><p>No correlating process instance.</p><p>" + id + contractNegotiated + "</p>");
+				out.println("<h2>Error </h2><p>No correlating process instance.</p><p>" + id + contractNegotiated + "</p>");
 			}
 		}
 		out.println("</body></html>");

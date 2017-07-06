@@ -56,4 +56,25 @@
 		<servlet-name>ImplementationResponse</servlet-name>
 		<url-pattern>/implementationResponse</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ReceiveCompleteArtwork</servlet-name>
+		<servlet-class>org.wwu.wfm.group10.iss.servlet.ReceiveCompleteArtworkServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ReceiveCompleteArtwork</servlet-name>
+		<url-pattern>/receiveCompleteArtwork</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>CustomerFeedbackArtwork</servlet-name>
+		<servlet-class>org.wwu.wfm.group10.iss.servlet.CustomerFeedbackArtworkServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CustomerFeedbackArtwork</servlet-name>
+		<url-pattern>/customerFeedbackArtwork</url-pattern>
+	</servlet-mapping>
+
+	
+	
 </web-app>

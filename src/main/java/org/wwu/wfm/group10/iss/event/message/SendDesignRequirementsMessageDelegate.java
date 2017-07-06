@@ -12,12 +12,13 @@ public class SendDesignRequirementsMessageDelegate implements JavaDelegate {
 	public void execute(DelegateExecution execution) throws Exception { 
 
 		HttpClient client = HttpClients.createDefault();
-		RequestBuilder requestBuilder = RequestBuilder.get().setUri("https://requestb.in/1656hro1")
-				.addParameter("id", execution.getProcessInstanceId());
+		//RequestBuilder requestBuilder = RequestBuilder.get().setUri("https://requestb.in/1656hro1")
+		//		.addParameter("id", execution.getProcessInstanceId());
 		
-		for (String variable : execution.getVariableNames()) {
-			requestBuilder.addParameter(variable, String.valueOf(execution.getVariable(variable)));
-		}
+		RequestBuilder requestBuilder = RequestBuilder.get().setUri("http://localhost:8010/pink_blob-0.1.0-SNAPSHOT/create-process")
+				.addParameter("corrID", execution.getProcessInstanceId())
+				.addParameter("designreq", String.valueOf(execution.getVariable("designreq")))
+				.addParameter("securityreq", String.valueOf(execution.getVariable("securityreq")));
 		
 		// execute request
 		HttpUriRequest request = requestBuilder.build();

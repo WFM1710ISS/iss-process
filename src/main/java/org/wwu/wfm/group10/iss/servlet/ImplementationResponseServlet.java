@@ -28,7 +28,7 @@ public class ImplementationResponseServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		out.println("<html><body>");
 		
-		String id = request.getParameter("id");
+		String id = request.getParameter("corrID");
 		String implementationAccepted = request.getParameter("implementationAccepted");
 		
 		if (null == id && null == implementationAccepted) {

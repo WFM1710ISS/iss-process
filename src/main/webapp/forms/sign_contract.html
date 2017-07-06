@@ -1,0 +1,29 @@
+<form name=sign_contract>
+
+	<div class="form-group">
+
+	<label for="clientContract">Upload signed contract with PinkBlob:</label>
+	<input type="file"
+       cam-variable-name="clientContract"
+       cam-variable-type="File"
+       cam-max-filesize="10000000"/>
+    </div> 
+    
+    <div class="form-group">
+	  <input type="checkbox"
+       		cam-variable-name="clientContractSigned"
+       		cam-variable-type="Boolean" required/>
+       		
+      <label for="clientContractSigned">Uploaded and signed</label>
+   </div> 
+   
+     <div class="form-group">
+    <label for="contractLink">Link to contract:</label>
+    <input class="form-control"
+           cam-variable-type="String"
+           cam-variable-name="contractLink"
+           name ="contractLink"/>
+  </div>
+  
+  
+</form>

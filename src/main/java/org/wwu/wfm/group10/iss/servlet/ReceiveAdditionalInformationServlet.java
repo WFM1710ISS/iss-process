@@ -28,7 +28,7 @@ public class ReceiveAdditionalInformationServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		out.println("<html><body>");
 		
-		String id = request.getParameter("id");
+		String id = request.getParameter("corrID");
 		String additionalInformationForAgency = request.getParameter("additionalInformationForAgency");
 		
 		if (null == id && null == additionalInformationForAgency) {
