@@ -13,7 +13,7 @@ public class SendApprovalProjectMessageDelegate implements JavaDelegate {
 
 		HttpClient client = HttpClients.createDefault();
 		
-		RequestBuilder requestBuilder = RequestBuilder.get().setUri("https://requestb.in/uwrqbjuw")
+		RequestBuilder requestBuilder = RequestBuilder.get().setUri("http://localhost:8010/pink_blob-0.1.0-SNAPSHOT/continue-process4")
 				.addParameter("corrID", execution.getProcessInstanceId())
 				.addParameter("furtherInputRequired", String.valueOf(execution.getVariable("furtherInputRequired")));		
 		
