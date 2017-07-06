@@ -13,20 +13,47 @@
 	</listener>
 
 	<servlet>
-		<servlet-name>CreateProcess</servlet-name>
-		<servlet-class>org.wwu.wfm.group10.iss.servlet.CreateProcessServlet</servlet-class>
+		<servlet-name>StartProcess</servlet-name>
+		<servlet-class>org.wwu.wfm.group10.iss.servlet.StartProcessServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>CreateProcess</servlet-name>
-		<url-pattern>/create</url-pattern>
+		<servlet-name>StartProcess</servlet-name>
+		<url-pattern>/startProcess</url-pattern>
 	</servlet-mapping>
+	
 	<servlet>
-		<servlet-name>ContinueProcess</servlet-name>
-		<servlet-class>org.wwu.wfm.group10.iss.servlet.ContinueProcessServlet</servlet-class>
+		<servlet-name>ReceiveContractConditions</servlet-name>
+		<servlet-class>org.wwu.wfm.group10.iss.servlet.ReceiveContractConditionsServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>ContinueProcess</servlet-name>
-		<url-pattern>/continue</url-pattern>
+		<servlet-name>ReceiveContractConditions</servlet-name>
+		<url-pattern>/receiveContractConditions</url-pattern>
 	</servlet-mapping>
-
+	
+	<servlet>
+		<servlet-name>RequestAdditionalInformation</servlet-name>
+		<servlet-class>org.wwu.wfm.group10.iss.servlet.RequestAdditionalInformationServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RequestAdditionalInformation</servlet-name>
+		<url-pattern>/requestAdditionalInformation</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ReceiveAdditionalInformation</servlet-name>
+		<servlet-class>org.wwu.wfm.group10.iss.servlet.ReceiveAdditionalInformationServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ReceiveAdditionalInformation</servlet-name>
+		<url-pattern>/receiveAdditionalInformation</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ImplementationResponse</servlet-name>
+		<servlet-class>org.wwu.wfm.group10.iss.servlet.ImplementationResponseServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ImplementationResponse</servlet-name>
+		<url-pattern>/implementationResponse</url-pattern>
+	</servlet-mapping>
 </web-app>
