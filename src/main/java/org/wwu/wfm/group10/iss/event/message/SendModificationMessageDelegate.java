@@ -12,8 +12,10 @@ public class SendModificationMessageDelegate implements JavaDelegate {
 	public void execute(DelegateExecution execution) throws Exception { 
 
 		HttpClient client = HttpClients.createDefault();
+
+		RequestBuilder requestBuilder = RequestBuilder.get().setUri("http://localhost:8010/pink_blob-0.1.0-SNAPSHOT/continue-process3")
 		
-		RequestBuilder requestBuilder = RequestBuilder.get().setUri("https://requestb.in/uwrqbjuw")
+		//RequestBuilder requestBuilder = RequestBuilder.get().setUri("https://requestb.in/uwrqbjuw")
 				.addParameter("corrID", execution.getProcessInstanceId())
 				.addParameter("customerFeedbackArtwork", String.valueOf(execution.getVariable("customerFeedbackArtwork")));		
 		

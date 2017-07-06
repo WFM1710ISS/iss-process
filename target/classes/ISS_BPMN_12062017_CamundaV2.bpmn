@@ -482,7 +482,7 @@
         <incoming>SequenceFlow_15d9p3m</incoming>
         <outgoing>SequenceFlow_11l1ms8</outgoing>
       </sendTask>
-      <serviceTask id="ServiceTask_2" name="Pay Bill" camunda:delegateExpression="${checkAmountService}">
+      <serviceTask id="ServiceTask_2" name="Pay Bill" camunda:delegateExpression="${PayBillForAgency}">
         <incoming>SequenceFlow_1405prc</incoming>
         <outgoing>SequenceFlow_1f65r3o</outgoing>
       </serviceTask>
