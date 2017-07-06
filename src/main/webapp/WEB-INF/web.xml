@@ -75,6 +75,22 @@
 		<url-pattern>/customerFeedbackArtwork</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>AgencyBillReceived</servlet-name>
+		<servlet-class>org.wwu.wfm.group10.iss.servlet.AgencyBillReceivedServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AgencyBillReceived</servlet-name>
+		<url-pattern>/receiveAgencyBill</url-pattern>
+	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>ReceiveCustomerPayment</servlet-name>
+		<servlet-class>org.wwu.wfm.group10.iss.servlet.ReceiveCustomerPaymentServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ReceiveCustomerPayment</servlet-name>
+		<url-pattern>/receiveCustomerPayment</url-pattern>
+	</servlet-mapping>
 	
 </web-app>

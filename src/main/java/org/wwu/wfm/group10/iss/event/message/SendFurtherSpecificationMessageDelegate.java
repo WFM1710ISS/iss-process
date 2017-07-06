@@ -12,8 +12,7 @@ public class SendFurtherSpecificationMessageDelegate implements JavaDelegate {
 	public void execute(DelegateExecution execution) throws Exception { 
 
 		HttpClient client = HttpClients.createDefault();
-
-		
+	
 		RequestBuilder requestBuilder = RequestBuilder.get().setUri("http://localhost:8010/pink_blob-0.1.0-SNAPSHOT/continue-process")
 				.addParameter("corrID", execution.getProcessInstanceId())
 				.addParameter("additionalInformationForAgency", String.valueOf(execution.getVariable("additionalInformationForAgency")));

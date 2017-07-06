@@ -38,7 +38,7 @@ public class CustomerFeedbackArtworkServlet extends HttpServlet {
 
 			try {
 				runtimeService.createMessageCorrelation("customerFeedbackArtwork").processInstanceId(id).setVariable("customerFeedbackArtwork",customerFeedbackArtwork).correlate();
-
+				
 				out.println("<h1>Message delivered to process</h1><p>ID: " + id  + "</p>");
 				
 			} catch (MismatchingMessageCorrelationException e) {

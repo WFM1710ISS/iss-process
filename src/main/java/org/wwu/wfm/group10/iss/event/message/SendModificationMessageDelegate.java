@@ -12,13 +12,10 @@ public class SendModificationMessageDelegate implements JavaDelegate {
 	public void execute(DelegateExecution execution) throws Exception { 
 
 		HttpClient client = HttpClients.createDefault();
-		RequestBuilder requestBuilder = RequestBuilder.get().setUri("https://requestb.in/1656hro1")
-				.addParameter("id", execution.getProcessInstanceId());		
 		
-		
-		for (String variable : execution.getVariableNames()) {
-			requestBuilder.addParameter(variable, String.valueOf(execution.getVariable(variable)));
-		}
+		RequestBuilder requestBuilder = RequestBuilder.get().setUri("https://requestb.in/uwrqbjuw")
+				.addParameter("corrID", execution.getProcessInstanceId())
+				.addParameter("customerFeedbackArtwork", String.valueOf(execution.getVariable("customerFeedbackArtwork")));		
 		
 		// execute request
 		HttpUriRequest request = requestBuilder.build();
