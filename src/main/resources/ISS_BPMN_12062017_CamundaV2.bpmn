@@ -92,6 +92,7 @@
     <sequenceFlow id="SequenceFlow_1yzaq3s" sourceRef="BoundaryEvent_0lx3goz" targetRef="Task_16poq59" />
     <sequenceFlow id="SequenceFlow_1fjz9rz" sourceRef="Task_16poq59" targetRef="EndEvent_0hpu07s" />
     <subProcess id="SubProcess_1" name="Define Requirements">
+      <incoming>SequenceFlow_1ct31nw</incoming>
       <outgoing>SequenceFlow_1wrdcll</outgoing>
       <userTask id="UserTask_2" name="Analyse Requirements" camunda:formKey="embedded:app:forms/enter_requirements.html">
         <incoming>SequenceFlow_0gxmzo1</incoming>
@@ -353,7 +354,6 @@
     <exclusiveGateway id="ExclusiveGateway_1c042uj">
       <incoming>SequenceFlow_0a1ttpu</incoming>
       <incoming>SequenceFlow_03wdhue</incoming>
-      <incoming>SequenceFlow_080tu5l</incoming>
       <outgoing>SequenceFlow_0ojozmj</outgoing>
     </exclusiveGateway>
     <sequenceFlow id="SequenceFlow_0a1ttpu" sourceRef="Task_1schrya" targetRef="ExclusiveGateway_1c042uj" />
@@ -519,9 +519,9 @@
       <incoming>SequenceFlow_05d84pn</incoming>
       <outgoing>SequenceFlow_0i16qm2</outgoing>
     </sendTask>
-    <sequenceFlow id="SequenceFlow_080tu5l" sourceRef="message_start_1" targetRef="ExclusiveGateway_1c042uj" />
+    <sequenceFlow id="SequenceFlow_1ct31nw" sourceRef="message_start_1" targetRef="SubProcess_1" />
     <startEvent id="message_start_1" name="Start Message">
-      <outgoing>SequenceFlow_080tu5l</outgoing>
+      <outgoing>SequenceFlow_1ct31nw</outgoing>
       <messageEventDefinition messageRef="Message_0ppc56b" />
     </startEvent>
     <association id="Association_0opy5wz" sourceRef="ServiceTask_2" targetRef="TextAnnotation_0tmbom9" />
@@ -573,9 +573,9 @@
         <omgdc:Bounds x="5916" y="1985" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="StartEvent_15wxfl3_di" bpmnElement="message_start_1">
-        <omgdc:Bounds x="4468" y="1457" width="36" height="36" />
+        <omgdc:Bounds x="325" y="1321" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="4451" y="1496" width="71" height="13" />
+          <omgdc:Bounds x="308" y="1360" width="71" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="UserTask_0drhhmn_di" bpmnElement="UserTask_2">
@@ -1339,12 +1339,13 @@
       <bpmndi:BPMNShape id="SendTask_08oiopq_di" bpmnElement="ServiceTask_1ngqyly">
         <omgdc:Bounds x="4800" y="1223" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="SequenceFlow_080tu5l_di" bpmnElement="SequenceFlow_080tu5l">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="4486" y="1457" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="4486" y="1261" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="4518" y="1261" />
+      <bpmndi:BPMNEdge id="SequenceFlow_1ct31nw_di" bpmnElement="SequenceFlow_1ct31nw">
+        <omgdi:waypoint xsi:type="omgdc:Point" x="361" y="1339" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="409" y="1339" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="409" y="1339" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="456" y="1339" />
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="4501" y="1352.5" width="0" height="13" />
+          <omgdc:Bounds x="424" y="1332.5" width="0" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
