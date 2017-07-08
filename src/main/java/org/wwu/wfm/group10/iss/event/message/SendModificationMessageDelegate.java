@@ -17,8 +17,9 @@ public class SendModificationMessageDelegate implements JavaDelegate {
 
 		RequestBuilder requestBuilder = RequestBuilder.get().setUri("http://localhost:8010/pink_blob-0.1.0-SNAPSHOT/continue-process3")		
 				.addParameter("corrID", execution.getProcessInstanceId())
+				.addParameter("modificationsRequired", String.valueOf(execution.getVariable("modificationsRequired")))
 				.addParameter("customerFeedbackArtwork", String.valueOf(execution.getVariable("customerFeedbackArtwork")));		
-		
+				
 		// execute request
 		HttpUriRequest request = requestBuilder.build();
 		HttpResponse response = client.execute(request); 

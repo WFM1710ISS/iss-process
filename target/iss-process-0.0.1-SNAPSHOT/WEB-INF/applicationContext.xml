@@ -23,8 +23,7 @@
 
   <context:annotation-config />
 
-  <bean id="confirmMailService" class="org.wwu.wfm.group10.iss.consultingservice.ConfirmMailService" />
-  <bean id="checkAmountService" class="org.wwu.wfm.group10.iss.consultingservice.CheckAmountService" />
+  <bean id="payBillForAgency" class="org.wwu.wfm.group10.iss.consultingservice.PayBillForAgency" />
   <bean id="consultingApplication" class="org.wwu.wfm.group10.iss.consultingservice.ISSConsultingApplication" />
   
 
